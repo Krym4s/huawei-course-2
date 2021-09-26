@@ -1,4 +1,8 @@
 #include "complex_number.hpp"
+complex_number::complex_number (double real) :
+    real_(real),
+    img_(0)
+{}
 
 complex_number::complex_number (double real, double img) :
     real_(real),

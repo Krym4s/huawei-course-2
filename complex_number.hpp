@@ -13,6 +13,8 @@ private:
 public:
     double real_;
     double img_;
+
+    complex_number (double real);
      //!-------------------------------------------------
      //! @brief Construct a new complex number object 
      //!
@@ -107,4 +109,6 @@ bool operator<  (const complex_number&, const double&) = delete;
 bool operator>  (const complex_number&, const double&) = delete;
 bool operator<= (const complex_number&, const double&) = delete;
 bool operator>= (const complex_number&, const double&) = delete;
+
+
 

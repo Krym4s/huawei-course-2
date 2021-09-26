@@ -9,6 +9,7 @@ int main()
     c = a; 
     c = d.power(4);
     c /= c;
+    c *= 3;
 
     c.print();
 
