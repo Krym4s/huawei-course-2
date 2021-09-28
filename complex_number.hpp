@@ -1,8 +1,6 @@
 #ifndef ISE_COMPLEX_NUMBER_HPP
 #define ISE_COMPLEX_NUMBER_HPP
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <cmath>
 #include <iostream>
 
