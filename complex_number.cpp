@@ -1,111 +1,218 @@
 #include "complex_number.hpp"
-complex_number::complex_number (double real) :
-    real_(real),
-    img_(0)
+
+complex_number :: complex_number () :
+    realpart (0),
+    imgpart (0)
 {}
 
-complex_number::complex_number (double real, double img) :
-    real_(real),
-    img_(img)
+complex_number :: complex_number (double real) :
+    realpart(real),
+    imgpart(0)
 {}
 
-complex_number::~complex_number()
+complex_number :: complex_number (double real, double img) :
+    realpart(real),
+    imgpart(img)
 {}
 
-complex_number complex_number::operator+ (const complex_number& another) const
+//----------------------------------------------------------------------------------------------------------
+
+complex_number :: ~complex_number()
 {
-    return {real_ + another.real_, img_ + another.img_};
+    realpart = 0;
+    imgpart  = 0;
 }
 
-complex_number complex_number::operator- (const complex_number& another) const
+//----------------------------------------------------------------------------------------------------------
+
+const complex_number complex_number::operator+ (const complex_number& another) const
 {
-    return {real_ - another.real_, img_ - another.img_};
+    return {realpart + another.realpart, imgpart + another.imgpart};
 }
 
-complex_number complex_number::operator* (const complex_number& another) const
+const complex_number complex_number::operator- (const complex_number& another) const
 {
-    return {real_ * another.real_ - img_ * another.img_, img_ * another.real_ + another.img_ * real_};
+    return {realpart - another.realpart, imgpart - another.imgpart};
 }
 
-complex_number complex_number::operator/ (const complex_number& another) const
+const complex_number complex_number::operator* (const complex_number& another) const
 {
-    double sqrAbs2 = another.real_ * another.real_ + another.img_ * another.img_;
-    return {(real_ * another.real_ + img_ * another.img_)/sqrAbs2, (img_ * another.real_ - another.img_ * real_)/sqrAbs2};
+    return {realpart * another.realpart - imgpart * another.imgpart, imgpart * another.realpart + another.imgpart * realpart};
 }
+
+const complex_number complex_number::operator/ (const complex_number& another) const
+{
+    double sqrAbs2 = another.realpart * another.realpart + another.imgpart * another.imgpart;
+    return {(realpart * another.realpart + imgpart * another.imgpart)/sqrAbs2, 
+            (imgpart * another.realpart - another.imgpart * realpart)/sqrAbs2};
+}
+
+//----------------------------------------------------------------------------------------------------------
+
+const complex_number complex_number :: operator+ (const double& another) const
+{
+    return {realpart + another, imgpart};
+}
+
+const complex_number complex_number :: operator- (const double& another) const
+{
+    return {realpart - another, imgpart};
+}
+
+const complex_number complex_number :: operator* (const double& another) const
+{
+    return {realpart * another, imgpart * another};
+}
+
+const complex_number complex_number :: operator/ (const double& another) const
+{
+    return {realpart / another, imgpart / another};
+}
+
+//----------------------------------------------------------------------------------------------------------
+
+const complex_number operator+ (const double& thisvalue, const complex_number& another) 
+{
+    return {thisvalue + another.realpart, another.imgpart};
+}
+const complex_number operator- (const double& thisvalue, const complex_number& another) 
+{
+    return {thisvalue - another.realpart, - another.imgpart};
+}
+const complex_number operator* (const double& thisvalue, const complex_number& another) 
+{
+    return {thisvalue * another.realpart, thisvalue * another.imgpart};
+}
+
+const complex_number operator/ (const double& thisvalue, const complex_number& another) 
+{
+    double sqrAbs2 = another.realpart * another.realpart + another.imgpart * another.imgpart;
+    return {(thisvalue * another.realpart)/sqrAbs2, 
+            (- another.imgpart * thisvalue)/sqrAbs2};
+}
+
+//----------------------------------------------------------------------------------------------------------
+
+const complex_number complex_number :: operator+() const
+{
+    return {realpart, imgpart};
+}
+
+const complex_number complex_number :: operator-() const
+{
+    return { - realpart, - imgpart};
+}
+
+
+//----------------------------------------------------------------------------------------------------------
 
 complex_number& complex_number::operator+= (const complex_number& another)
 {
-    real_ = real_ + another.real_;
-    img_  = img_  + another.img_;
+    realpart = realpart + another.realpart;
+    imgpart  = imgpart  + another.imgpart;
     return *this;
 }
 
 complex_number& complex_number::operator-= (const complex_number& another)
 {
-    real_ = real_ - another.real_;
-    img_  = img_  - another.img_;
+    realpart = realpart - another.realpart;
+    imgpart  = imgpart  - another.imgpart;
     return *this;
 }
 complex_number& complex_number::operator*= (const complex_number& another)
 {
-    real_ = real_ * another.real_ - img_ * another.img_;
-    img_  = img_ * another.real_ + another.img_ * real_;
+    double tempreal = realpart;
+    realpart = realpart * another.realpart - imgpart * another.imgpart;
+    imgpart  = imgpart * another.realpart + another.imgpart * tempreal;
     return *this;
 }
 
 complex_number& complex_number::operator/= (const complex_number& another)
 {
-    double sqrAbs2 = another.real_ * another.real_ + another.img_ * another.img_;
-    real_ = (real_ * another.real_ + img_ * another.img_)/sqrAbs2;
-    img_  = (img_ * another.real_ - another.img_ * real_)/sqrAbs2;
+    double tempreal = realpart;
+    double sqrAbs2 = another.realpart * another.realpart + another.imgpart * another.imgpart;
+    realpart = (realpart * another.realpart + imgpart * another.imgpart)/sqrAbs2;
+    imgpart  = (imgpart * another.realpart - another.imgpart * tempreal)/sqrAbs2;
     return *this;
 }
 
+//----------------------------------------------------------------------------------------------------------
+
+complex_number& complex_number :: operator+= (const double& another) 
+{
+    realpart += another;
+    return *this;
+}
+
+complex_number& complex_number :: operator-= (const double& another) 
+{
+    realpart -= another;
+    return *this;
+}
+
+complex_number& complex_number :: operator*= (const double& another) 
+{
+    realpart *= another;
+    imgpart  *= another;
+    return *this;
+}
+
+complex_number& complex_number :: operator/= (const double& another) 
+{
+    realpart /= another;
+    imgpart  /= another;
+    return *this;
+}
+
+//----------------------------------------------------------------------------------------------------------
+
 complex_number::complex_number(const complex_number& another) :
-    real_(another.real_),
-    img_(another.img_)
+    realpart(another.realpart),
+    imgpart(another.imgpart)
 {}
 
 complex_number& complex_number::operator= (const complex_number& another)
 {
-    real_ = another.real_;
-    img_  = another.img_;
+    realpart = another.realpart;
+    imgpart  = another.imgpart;
     return *this;
 }
 
+//----------------------------------------------------------------------------------------------------------
+
 double complex_number :: abs() const
 {
-    return sqrt(real_ * real_ + img_ * img_);
+    return sqrt(realpart * realpart + imgpart * imgpart);
 }
 
 double complex_number :: Re()  const
 {
-    return real_;
+    return realpart;
 }
 
 double complex_number :: Im()  const
 {
-    return img_;
+    return imgpart;
 }
 
 complex_number complex_number :: power (double power) const
 {
     double angle = Arg();
 
-    double abs = this->abs();
-    abs = pow (abs, power);
+    double absV = this->abs();
+    absV = pow (absV, power);
 
     angle *= power;
-
-    return {abs * cos (angle), abs * sin (angle)};
+ 
+    return {absV * cos (angle), absV * sin (angle)};
 }
 
 double complex_number :: Arg() const
 {
     double abs = this->abs();
     
-    double sinAngle = asin (img_/abs);
-    double cosAngle = acos (real_/abs);
+    double sinAngle = asin (imgpart/abs);
+    double cosAngle = acos (realpart/abs);
     double angle = 0;
 
     if (sinAngle >= 0)
@@ -121,19 +228,25 @@ complex_number complex_number :: ln () const
     return {log(abs()), Arg()};
 }
 
+//----------------------------------------------------------------------------------------------------------
+
 void complex_number :: print () const
 {
-    if (img_ >= 0)
-        printf ("%lg+%lgi", real_, img_);
+    if (imgpart >= 0)
+        printf ("%lg+%lgi", realpart, imgpart);
     else
-        printf ("%lg%lgi", real_, img_);
+        printf ("%lg%lgi", realpart, imgpart);
 
 }
 
 std::ostream& operator<< (std::ostream& out, const complex_number& num)
 {
-    if (num.img_ >= 0)
-        out << num.real_ << "+" << num.img_ << 'i';
+    if (num.imgpart >= 0)
+        out << num.realpart << "+" << num.imgpart << 'i';
     else
-        out << num.real_ << num.img_ << 'i';
+        out << num.realpart << num.imgpart << 'i';
+
+    return out;
 } 
+
+//----------------------------------------------------------------------------------------------------------

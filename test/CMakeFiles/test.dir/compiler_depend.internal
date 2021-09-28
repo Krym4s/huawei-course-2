@@ -180,7 +180,6 @@ test/CMakeFiles/test.dir/test.cpp.o
  /usr/include/c++/11/bits/ostream.tcc
  /usr/include/c++/11/istream
  /usr/include/c++/11/bits/istream.tcc
- /home/krym4s/huawei/complex_number/complex_number.hpp
  /usr/include/c++/11/cmath
  /usr/include/math.h
  /usr/include/x86_64-linux-gnu/bits/math-vector.h
@@ -206,7 +205,7 @@ test/CMakeFiles/test.dir/test.cpp.o
  /usr/include/c++/11/tr1/poly_hermite.tcc
  /usr/include/c++/11/tr1/poly_laguerre.tcc
  /usr/include/c++/11/tr1/riemann_zeta.tcc
- /usr/include/c++/11/math.h
+ /home/krym4s/huawei/complex_number/complex_number.hpp
  /usr/include/boost/test/unit_test.hpp
  /usr/include/boost/test/test_tools.hpp
  /usr/include/boost/config.hpp
