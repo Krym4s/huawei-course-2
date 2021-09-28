@@ -195,7 +195,7 @@ double complex_number :: Im()  const
     return imgpart;
 }
 
-complex_number complex_number :: power (double power) const
+complex_number complex_number :: power (const double power) const
 {
     double angle = Arg();
 
