@@ -55,7 +55,7 @@ struct complex_number
     double Re()  const;
     double Im()  const;
     double Arg() const;
-    complex_number power (double power) const;
+    complex_number power (const double power) const;
     complex_number ln () const;
 
     void print() const;
