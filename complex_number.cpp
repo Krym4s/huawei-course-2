@@ -1,4 +1,5 @@
 #include "complex_number.hpp"
+#include <cmath>
 
 complex_number :: complex_number () :
     realpart (0),
