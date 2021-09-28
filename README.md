@@ -19,7 +19,7 @@ To run tests you have to have Boost of version 1.68 or greater.
 in main directory of project write in terminal
 
 ```
-  cmake.
+  cmake .
   cd test
   ./test
 ```
