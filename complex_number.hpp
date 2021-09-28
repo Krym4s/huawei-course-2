@@ -1,7 +1,6 @@
 #ifndef ISE_COMPLEX_NUMBER_HPP
 #define ISE_COMPLEX_NUMBER_HPP
 
-#include <cmath>
 #include <iostream>
 
 struct complex_number
