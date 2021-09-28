@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/test.dir/test.cpp.o -o test  ../libcomplex_number.a /usr/lib/x86_64-linux-gnu/libboost_unit_test_framework.so.1.71.0 
